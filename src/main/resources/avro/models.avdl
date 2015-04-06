@@ -1,0 +1,87 @@
+@namespace("org.ga4gh")
+
+protocol GenotypePhenotype {
+
+import idl "ontologies.avdl";
+
+
+record ContrastSets {
+
+  /** a unique string that identifies this contrast set. If two contrast records
+   have the same id, they should be considered the same.
+  */
+  string id;
+
+  string name;
+
+  string studyID;
+
+  array<string> groups;
+
+  array<array<string>> members;
+
+}
+
+
+
+/**
+A predictive Model. Usually provided as part of
+evidence for an association.
+*/
+record Model {
+
+  /** a unique string that identifies this model. If two model records
+   have the same id, they should be considered the same.
+  */
+  string id;
+
+  /** An optional descriptive name of the model
+  */
+  union{null, string} name = null;
+
+  /** Ontology Term describing the type of model that does the prediction */
+  org.ga4gh.models.OntologyTerm modelType;
+
+  /** Evidence performance metric
+  If the evidence is a predictive method,
+  a value recording its performance, usually a value derived from
+  testing against a background model, can be recorded.
+  This is usually in the form of a area under the curve of
+  Receiver Operating Characteristic (au_roc)
+  */
+  array<float> performance = null;
+
+  /** Name of the performance metric
+   If a performance value has been associated with an evidence
+   then type of metric used should be described.
+   Valid selections include:
+   au_roc : Area Under Receiver Operating Characteristic
+   au_pr  : Area Under Precision-Recall
+  */
+  array<string> performanceMetric = null;
+
+  /** A map of major components of the model
+   Elements important to a model, can be described
+   in the components list. For linear regression
+   models the components could be the coefficients
+   attached to each of the input features
+  */
+  union { null, map<float> } components = null;
+
+  /** The Feature Space is the type of data used
+   for the input features in the model.
+   For "example org.ga4gh.models.VariantSet" if the model
+   uses variants as the inputs
+  **/
+  union { null, string } featureSpace = null;
+
+  /** The label Space is the type of data used
+   for the output label in the model.
+   For example, "org.ga4gh.models.Phenotype" if the model
+   predicts phenotype status
+  **/
+  union { null, string } labelSpace = null;
+}
+
+
+}
