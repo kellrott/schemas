@@ -1,4 +1,4 @@
-@namespace("org.ga4gh")
+@namespace("org.ga4gh.models")
 /**
 
 This protocol defines the associations between genotype
@@ -122,7 +122,7 @@ record Association {
     must not be null.
   */
   union {
-    array<org.ga4gh.models.GenomicFeature>
+    array<org.ga4gh.models.Feature>,
     org.ga4gh.models.Individual,
     org.ga4gh.models.Sample
   } subject;

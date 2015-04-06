@@ -1,5 +1,5 @@
 
-@namespace("org.ga4gh")
+@namespace("org.ga4gh.methods")
 /**
 This protocol defines genotype to phenotype relationships
 query system.
@@ -52,7 +52,7 @@ query is for a gene, then any alleles to that gene for which
 there are annotation records would be returned.
 */
 record FeatureQuery {
-  array<org.ga4gh.models.GenomicFeature> features;
+  array<org.ga4gh.models.Feature> features;
 }
 
 
@@ -60,7 +60,7 @@ record FeatureQuery {
 One or more phenotypes can be queried together.
 */
 record PhenotypeQuery {
-  array<org.ga4gh.PhenotypeInstance> phenotypes;
+  array<org.ga4gh.models.PhenotypeInstance> phenotypes;
 }
 
 /** This request maps to the body of `POST /genotypephenotype/search` as JSON. */
@@ -90,9 +90,9 @@ record SearchFeaturesRequest {
 /** This is the response from `POST /genotypephenotype/search` expressed as JSON. */
 record SearchFeaturesResponse {
   /**
-  The list of matching FeaturePhenotypeAssociation.
+  The list of matching Association.
   */
-  array<org.ga4gh.FeaturePhenotypeAssociation> associations = [];
+  array<org.ga4gh.models.Association> associations = [];
 
   /**
   The continuation token, which is used to page through large result sets.
