@@ -71,11 +71,6 @@ record Individual {
   */
   array<OntologyTerm> diseases = [];
 
-  /**
-  Phenotypes for this individual.
-  TODO: Is this the right representation?
-  */
-  array<OntologyTerm> phenotypes = [];
 
   /**
   Disease area specific classification (e.g. classification of cancer samples
